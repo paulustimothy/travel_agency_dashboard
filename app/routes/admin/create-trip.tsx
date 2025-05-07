@@ -12,6 +12,7 @@ import {
 import { world_map } from "~/constants/world_map";
 import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
 import { account } from "~/appwrite/client";
+import { useNavigate } from "react-router";
 
 export const loader = async () => {
   const res = await fetch("https://restcountries.com/v3.1/all");
@@ -27,6 +28,7 @@ export const loader = async () => {
 
 const createTrips = ({ loaderData }: Route.ComponentProps) => {
   const countries = loaderData as Country[];
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState<TripFormData>({
     country: countries[0]?.name || "",
@@ -69,10 +71,26 @@ const createTrips = ({ loaderData }: Route.ComponentProps) => {
     }
 
     try {
-      console.log("user: ", user);
-      console.log("formData: ", formData);
+      const response = await fetch("/api/create-trip", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          country: formData.country,
+          numberOfDays: formData.duration,
+          travelStyle: formData.travelStyle,
+          interests: formData.interest,
+          budget: formData.budget,
+          groupType: formData.groupType,
+          userId: user.$id,
+        }),
+      });
+
+      const result: CreateTripResponse = await response.json();
+
+      if (result?.id) navigate(`/trips/${result.id}`);
+      else console.error("Failed to generate a trip");
     } catch (error) {
-      console.log("error generaning trip", error);
+      console.log("error generating trip", error);
     } finally {
       setLoading(false);
     }
@@ -106,7 +124,7 @@ const createTrips = ({ loaderData }: Route.ComponentProps) => {
       <section className="mt-2.5 wrapper-md">
         <form className="trip-form" onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="country">COuntry</label>
+            <label htmlFor="country">Country</label>
             <ComboBoxComponent
               id="country"
               dataSource={countryData}
