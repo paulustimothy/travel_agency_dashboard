@@ -469,17 +469,17 @@
   .travel-detail .itinerary {
     @apply space-y-8 mt-8;
   }
-  
+
   .travel-detail .itinerary li {
     @apply transition-all duration-200;
   }
-  
+
   .travel-detail .itinerary li:hover {
     @apply shadow-md;
   }
-  
+
   .travel-detail .itinerary .activity-dot {
-    @apply absolute left-[-1rem] top-[0.6rem] w-2 h-2 bg-primary-300 rounded-full;
+    @apply absolute left-[-1rem] top-[0.6rem] w-2 h-2 bg-primary-100 rounded-full;
   }
 }
 
