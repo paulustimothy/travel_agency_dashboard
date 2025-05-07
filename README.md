@@ -1,87 +1,88 @@
-# Welcome to React Router!
+# Travel Agency Dashboard 🌍✈️
 
-A modern, production-ready template for building full-stack React applications using React Router.
+A modern full-stack travel agency dashboard built with React Router and TypeScript, featuring AI-powered trip generation and real-time analytics.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+![screnshot](./Screenshot%20from%202025-05-07%2014-07-04.png)
 
-## Features
+## ✨ Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- 🤖 AI-powered trip itinerary generation using Google Gemini API
+- 📊 Real-time analytics dashboard with Syncfusion charts
+- 🎨 Modern UI with Tailwind CSS and custom components
+- 🔐 User authentication and role-based access control
+- 📱 Responsive design for all devices
+- 🖼️ Dynamic image handling with Unsplash API
+- 🗄️ Data persistence with Appwrite backend
+- 🚀 Server-side rendering for optimal performance
+- 📈 Error tracking and monitoring with Sentry
 
-## Getting Started
+## 🛠️ Tech Stack
+
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **Backend**: Appwrite
+- **APIs**: Google Gemini AI, Unsplash
+- **Charts**: Syncfusion
+- **Monitoring**: Sentry
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18 or higher
+- npm or yarn
+- Appwrite instance
 
 ### Installation
 
-Install the dependencies:
+1. Clone the repository
 
-```bash
-npm install
-```
+   ```bash
+   git clone https://github.com/paulustimothy/travel_agency_dashboard.git
+   cd travel_agency_dashboard
+   ```
 
-### Development
+2. Install dependencies
 
-Start the development server with HMR:
+   ```bash
+   npm install
+   ```
 
-```bash
-npm run dev
-```
+3. Create `.env` file in the root directory
 
-Your application will be available at `http://localhost:5173`.
+   ```env
+   # Appwrite
+   VITE_APPWRITE_ENDPOINT=
+   VITE_APPWRITE_PROJECT_ID=
+   VITE_APPWRITE_DATABASE_ID=
+   VITE_APPWRITE_API_KEY=
+   VITE_APPWRITE_USER_COLLECTION_ID=
+   VITE_APPWRITE_TRIPS_COLLECTION_ID=
 
-## Building for Production
+   # Syncfusion
+   VITE_SYNCFUSION_LICENSE_KEY=
 
-Create a production build:
+   # Google AI Studio
+   GEMINI_API_KEY=
+
+   # Unsplash
+   UNSPLASH_ACCESS_KEY=
+   ```
+
+4. Start development server
+   ```bash
+   npm run dev
+   ```
+
+### Production Build
 
 ```bash
 npm run build
 ```
 
-## Deployment
+## 🤝 Contributing
 
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-Built with ❤️ using React Router.
+Special Thanks to JS Mastery
