@@ -85,8 +85,13 @@ const tripDetail = ({ loaderData }: Route.ComponentProps) => {
               image="/assets/icons/calendar.svg"
             />
             <InfoPill
-              text={location?.city || ""}
-              image="/assets/icons/location-mark.svg"
+              text={
+                itinerary
+                  ?.slice(0, 4)
+                  .map((item) => item.location)
+                  .join(", ") || ""
+              }
+              image="/assets/icons/location-mark.svg" 
             />
           </div>
         </header>
@@ -142,7 +147,7 @@ const tripDetail = ({ loaderData }: Route.ComponentProps) => {
             </li>
           </ul>
         </section>
-        <section className="titke">
+        <section className="title">
           <article>
             <h3>
               {duration}-Day {country} {travelStyle} Trip
@@ -151,34 +156,48 @@ const tripDetail = ({ loaderData }: Route.ComponentProps) => {
             <p>
               {budget}, {groupType} and {interests}
             </p>
-
-            <h2>{estimatedPrice}</h2>
           </article>
+          <h2>{estimatedPrice}</h2>
         </section>
         <p className="text-sm md:text-lg font-normal text-dark-400">
           {description}
         </p>
-        Bali Nights: A Solo Bar-Hopping
-        <ul className="iitnerary">
-          {itinerary?.map((dayPlan: DayPlan, index: number) => (
-            <li key={index}>
-              <h3>
-                Day {dayPlan.day}: {dayPlan.location}
-              </h3>
+        <section>
+          <h2 className="text-2xl font-semibold text-dark-100 mb-6">
+            Itinerary Overview
+          </h2>
+          <ul className="space-y-8">
+            {itinerary?.map((dayPlan: DayPlan, index: number) => (
+              <li
+                key={index}
+                className="bg-white rounded-xl p-6 shadow-sm border border-gray-100"
+              >
+                <h3 className="text-xl font-semibold text-primary-500 mb-4 flex items-center gap-2">
+                  <span className="bg-primary-50 text-primary-700 px-3 py-1 rounded-lg text-sm">
+                    Day {dayPlan.day}
+                  </span>
+                  <span>{dayPlan.location}</span>
+                </h3>
 
-              <ul>
-                {dayPlan.activities.map((activity, index: number) => (
-                  <li key={index}>
-                    <span className="flex-shring-0 p-18-semibold">
-                      {activity.time}
-                    </span>
-                    <p className="flex-grow">{activity.description}</p>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
+                <ul className="space-y-4 pl-4">
+                  {dayPlan.activities.map((activity, aidx) => (
+                    <li
+                      key={aidx}
+                      className="flex items-start gap-6 relative before:content-[''] before:absolute before:left-[-1rem] before:top-[0.6rem] before:w-2 before:h-2 before:bg-primary-300 before:rounded-full"
+                    >
+                      <span className="w-24 text-sm font-medium text-primary-600 shrink-0 bg-primary-50 px-2 py-1 rounded">
+                        {activity.time}
+                      </span>
+                      <p className="text-gray-700 text-base leading-relaxed">
+                        {activity.description}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </section>
         {visitTimeAndWeatherInfo.map((section) => (
           <section key={section.title} className="visit">
             <div>
@@ -187,7 +206,7 @@ const tripDetail = ({ loaderData }: Route.ComponentProps) => {
               <ul>
                 {section.items?.map((item) => (
                   <li key={item}>
-                    <p className="flex-gro">{item}</p>
+                    <p className="flex-grow">{item}</p>
                   </li>
                 ))}
               </ul>
@@ -205,7 +224,7 @@ const tripDetail = ({ loaderData }: Route.ComponentProps) => {
               id,
               name,
               imageUrls,
-              itinerary,
+              location,
               interests,
               travelStyle,
               estimatedPrice,
@@ -214,7 +233,7 @@ const tripDetail = ({ loaderData }: Route.ComponentProps) => {
                 id={id}
                 key={id}
                 name={name}
-                location={itinerary?.[0].location ?? ""}
+                location={location.city ?? ""}
                 imageUrl={imageUrls[0]}
                 tags={[interests, travelStyle]}
                 price={estimatedPrice}
