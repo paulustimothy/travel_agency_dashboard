@@ -43,7 +43,6 @@ const tripDetail = ({ loaderData }: Route.ComponentProps) => {
     name,
     duration,
     itinerary,
-    location,
     travelStyle,
     groupType,
     budget,
